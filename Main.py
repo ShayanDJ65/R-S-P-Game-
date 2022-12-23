@@ -21,6 +21,7 @@ paper_img = tk.PhotoImage(file='Assets/Images/paper.png')
 Choices_images = [rock_img,scissor_img,paper_img]
 
 def play_screen():
+    global AI_start
     global counter_lbl
     Buttons_frame.pack_forget()
     Welcome_lbl.pack_forget()
@@ -42,11 +43,15 @@ def play_screen():
     yourchoice_text.pack(anchor=tk.CENTER,side = tk.BOTTOM)
     AI_choice_frame = ct.CTkFrame()
     AI_choice_frame.pack(side=tk.TOP)
-    AI_choice_lbl = ct.CTkLabel(AI_choice_frame, text="")
-    for i in range(3):
-        AI_choice_lbl.after(4000,lambda:AI_choice_lbl.configure(image=Choices_images[0]))
-        AI_choice_lbl.after(5000,lambda:AI_choice_lbl.configure(image=Choices_images[1]))
-        AI_choice_lbl.after(6000,lambda:AI_choice_lbl.configure(image=Choices_images[2]))
+    AI_choice_lbl = ct.CTkLabel(AI_choice_frame, text="",height=150,width=100)
+    def AI_start():
+        AI_choice_lbl.after(3500,lambda :AI_choice_lbl.configure(image = Choices_images[0]))
+        AI_choice_lbl.after(3700,lambda:AI_choice_lbl.configure(image=Choices_images[1]))
+        AI_choice_lbl.after(3900,lambda:AI_choice_lbl.configure(image=Choices_images[2]))
+        AI_choice_lbl.after(4100,lambda :AI_choice_lbl.configure(image = Choices_images[0]))
+        AI_choice_lbl.after(4300,lambda:AI_choice_lbl.configure(image=Choices_images[1]))
+        AI_choice_lbl.after(4500,lambda:AI_choice_lbl.configure(image=Choices_images[2]))
+
     AI_choice_lbl.pack()
 def after_choice():
     pass
@@ -71,6 +76,7 @@ exit_btn.pack(pady=15)
 
 
 def Main_game(choice):
+    AI_start()
     global Score
     global player_choice
     global AI_choice
