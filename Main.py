@@ -2,6 +2,7 @@ import customtkinter as ct
 import random as rnd
 import tkinter as tk
 import time
+from PIL import Image
 app = ct.CTk()
 app.title("Rock-Paper-Scissor Game")
 app.resizable(False,False)
@@ -15,10 +16,18 @@ Choices = [
     'scissor',
     'paper'
 ]
+
+
+# 50x50 Images
 rock_img = tk.PhotoImage(file='Assets/Images/rock.png')
 scissor_img = tk.PhotoImage(file='Assets/Images/scissor.png')
 paper_img = tk.PhotoImage(file='Assets/Images/paper.png')
-Choices_images = [rock_img,scissor_img,paper_img]
+# 100x100 Images
+rock_img_100 = tk.PhotoImage(file='Assets/Images/100/rock.png')
+scissor_img_100 = tk.PhotoImage(file='Assets/Images/100/scissor.png')
+paper_img_100 = tk.PhotoImage(file='Assets/Images/100/paper.png')
+
+Choices_images = [rock_img,scissor_img,paper_img,rock_img_100,scissor_img_100,paper_img_100] # 0-2 50x50px - 3-5 100x100px
 
 def play_screen():
     global AI_start
@@ -41,16 +50,16 @@ def play_screen():
     paper_btn.grid(row = 0, column=2,padx=30)
     yourchoice_text = ct.CTkLabel(text='Choosse your choice',text_font=('Arial',18))
     yourchoice_text.pack(anchor=tk.CENTER,side = tk.BOTTOM)
-    AI_choice_frame = ct.CTkFrame()
-    AI_choice_frame.pack(side=tk.TOP)
+    AI_choice_frame = ct.CTkFrame(fg_color="#222325")
+    AI_choice_frame.pack(side=tk.TOP,pady=60)
     AI_choice_lbl = ct.CTkLabel(AI_choice_frame, text="",height=150,width=100)
     def AI_start():
-        AI_choice_lbl.after(3500,lambda :AI_choice_lbl.configure(image = Choices_images[0]))
-        AI_choice_lbl.after(3700,lambda:AI_choice_lbl.configure(image=Choices_images[1]))
-        AI_choice_lbl.after(3900,lambda:AI_choice_lbl.configure(image=Choices_images[2]))
-        AI_choice_lbl.after(4100,lambda :AI_choice_lbl.configure(image = Choices_images[0]))
-        AI_choice_lbl.after(4300,lambda:AI_choice_lbl.configure(image=Choices_images[1]))
-        AI_choice_lbl.after(4500,lambda:AI_choice_lbl.configure(image=Choices_images[2]))
+        AI_choice_lbl.after(3500,lambda :AI_choice_lbl.configure(image = Choices_images[3]))
+        AI_choice_lbl.after(3700,lambda:AI_choice_lbl.configure(image=Choices_images[4]))
+        AI_choice_lbl.after(3900,lambda:AI_choice_lbl.configure(image=Choices_images[5]))
+        AI_choice_lbl.after(4100,lambda :AI_choice_lbl.configure(image = Choices_images[3]))
+        AI_choice_lbl.after(4300,lambda:AI_choice_lbl.configure(image=Choices_images[4]))
+        AI_choice_lbl.after(4500,lambda:AI_choice_lbl.configure(image=Choices_images[5]))
 
     AI_choice_lbl.pack()
 def after_choice():
@@ -63,7 +72,7 @@ def exit():
     app.quit()
 
 #=================== Labels ================#
-Welcome_lbl = ct.CTkLabel(text= 'Welcome to Rock Paper Scissor Game',text_font=('Excluded',20,'bold'))
+Welcome_lbl = ct.CTkLabel(text= 'Welcome to Rock Paper Scissor Game',text_font=('Excluded',17,'bold'))
 Welcome_lbl.pack(anchor = tk.CENTER,pady = 14)
 Buttons_frame = ct.CTkFrame(fg_color="#222325")
 Buttons_frame.pack(anchor=tk.CENTER,pady=120)
